@@ -44,13 +44,19 @@ Tem um tom contemporâneo, que utiliza linguagem que mistura o formal com o info
 
 ```mermaid
 flowchart TD
-    A[Cliente] -->|Mensagem| B[Interface]
-    B --> C[LLM]
-    C --> D[Base de Conhecimento]
-    D --> C
-    C --> E[Validação]
-    E --> F[Resposta]
-    F --> A[Cliente]
+    A[Usuário] --> B[Streamlit]
+    B --> C[AgenteBio]
+
+    C --> D[FAISS + Sentence Transformers]
+    C --> E[Persona / Regras]
+
+    D --> F[Contexto recuperado]
+    E --> F[Contexto recuperado]
+
+    F --> G[Google Gemini]
+    G --> H[Resposta ao usuário]
+    H --> B[Streamlit]
+    B --> A[Usuário]
 ```
 
 ### Componentes

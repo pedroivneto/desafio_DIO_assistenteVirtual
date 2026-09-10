@@ -1,5 +1,8 @@
 import streamlit as st
 from agente import AgenteBio
+from langfuse import get_client
+
+langfuse = get_client()
 
 st.set_page_config(
     page_title="BIO - Agente Financeiro",
@@ -32,7 +35,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar=avatar_atual):
         st.markdown(message["content"])
 
-# Entradas do Cliente (A -> B)
+# Entradas do Cliente
 if prompt := st.chat_input("Digite sua dúvida financeira..."):
     with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
@@ -45,6 +48,9 @@ if prompt := st.chat_input("Digite sua dúvida financeira..."):
                 historico_chat=st.session_state.messages[:-1]
             )
             st.markdown(resposta_agente)
+            
+            # Envia as métricas de latência para o Langfuse Cloud
+            langfuse.flush()
 
-    # D -> A (Salva a resposta do agente)
+    # Salva a resposta do agente no histórico
     st.session_state.messages.append({"role": "assistant", "content": resposta_agente})
