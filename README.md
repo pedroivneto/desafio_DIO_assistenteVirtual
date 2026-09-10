@@ -17,7 +17,7 @@ O Assistente Virtual Financeiro foi desenvolvido para responder perguntas relaci
 O fluxo principal do agente é:
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Usuário] --> B[Streamlit]
     B --> C[AgenteBio]
 
@@ -146,11 +146,11 @@ desafio_DIO_assistenteVirtual/
 │   ├── agente.py
 │   ├── app.py
 │   ├── database.py
+│   ├── config.py
 │   └── persona.py
 │
 ├── .env
 ├── .gitignore
-├── config.py
 └── README.md
 ```
 

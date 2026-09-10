@@ -43,7 +43,7 @@ Tem um tom contemporâneo, que utiliza linguagem que mistura o formal com o info
 ### Diagrama
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Usuário] --> B[Streamlit]
     B --> C[AgenteBio]
 
